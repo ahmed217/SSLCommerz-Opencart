@@ -2,7 +2,9 @@
 
 SSLCOMMERZ-Online Payment Gateway For Bangladesh
 
-This Module Work for Opencart Version 3.x.x
+- This fork is for Opencard Version 4.x.x (development in progress 8/28/2025)
+
+- This Module Work for Opencart Version 3.x.x
 
 ### Prerequisite
 
@@ -10,6 +12,24 @@ This Module Work for Opencart Version 3.x.x
   - A [Sandbox Account](https://developer.sslcommerz.com/registration/ "SSLCommerz Sandbox Registration") or [Live Merchant Account](https://signup.sslcommerz.com/register/ "Merchant Registration")
 
 
+### Configuration and usage
+
+    - Install the extension via the OpenCart Extension Installer (upload the extension/sslcommerz folder as a zipped OCMOD package or place it directly on the server if developing).
+
+    - Go to Extensions → Extensions → Payments → SSLCommerz → Edit.
+
+    - Set:
+
+        - Store ID and Store Password from your SSLCommerz account.
+
+        - Mode: Sandbox for testing, Live for production.
+
+        - Order statuses: Paid, Pending, Failed.
+
+        - Optional: Geo Zone, Minimum Total, Sort Order.
+
+    - Ensure your store has a valid HTTPS URL accessible by SSLCommerz for IPN callbacks.
+	
 ### Installation Steps:
 
 Please follow these steps to install the SSLCommerz Payment Gateway extension -
