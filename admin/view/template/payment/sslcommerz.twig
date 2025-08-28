@@ -1,0 +1,134 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+      <div class="float-end">
+        <button type="submit" form="form-sslcommerz" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa-solid fa-save"></i></button>
+        <a href="{{ cancel }}" data-bs-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fa-solid fa-reply"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    {% if error_warning %}
+      <div class="alert alert-danger alert-dismissible"><i class="fa-solid fa-circle-exclamation"></i> {{ error_warning }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endif %}
+
+    <div class="card">
+      <div class="card-header"><i class="fa-solid fa-credit-card"></i> {{ text_edit }}</div>
+      <div class="card-body">
+        <form action="{{ action }}" method="post" id="form-sslcommerz" data-oc-toggle="ajax">
+          <div class="row mb-3 required">
+            <label class="col-sm-2 col-form-label" for="input-store-id">{{ entry_store_id }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="payment_sslcommerz_store_id" value="{{ payment_sslcommerz_store_id }}" placeholder="{{ entry_store_id }}" id="input-store-id" class="form-control"/>
+              {% if error_store_id %}
+                <div class="text-danger">{{ error_store_id }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row mb-3 required">
+            <label class="col-sm-2 col-form-label" for="input-store-password">{{ entry_store_password }}</label>
+            <div class="col-sm-10">
+              <input type="password" name="payment_sslcommerz_store_password" value="{{ payment_sslcommerz_store_password }}" placeholder="{{ entry_store_password }}" id="input-store-password" class="form-control"/>
+              {% if error_store_password %}
+                <div class="text-danger">{{ error_store_password }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="input-test">{{ entry_test }}</label>
+            <div class="col-sm-10">
+              <select name="payment_sslcommerz_test" id="input-test" class="form-select">
+                <option value="1" {% if payment_sslcommerz_test %}selected{% endif %}>{{ text_sandbox }}</option>
+                <option value="0" {% if not payment_sslcommerz_test %}selected{% endif %}>{{ text_live }}</option>
+              </select>
+              <div class="form-text">{{ help_test }}</div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="input-min-total">{{ entry_min_total }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="payment_sslcommerz_min_total" value="{{ payment_sslcommerz_min_total }}" id="input-min-total" class="form-control"/>
+              <div class="form-text">{{ help_min_total }}</div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="input-order-status">{{ entry_order_status }}</label>
+            <div class="col-sm-10">
+              <select name="payment_sslcommerz_order_status_id" id="input-order-status" class="form-select">
+                {% for order_status in order_statuses %}
+                  <option value="{{ order_status.order_status_id }}" {% if order_status.order_status_id == payment_sslcommerz_order_status_id %}selected{% endif %}>{{ order_status.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="input-pending-status">{{ entry_pending_status }}</label>
+            <div class="col-sm-10">
+              <select name="payment_sslcommerz_pending_status_id" id="input-pending-status" class="form-select">
+                {% for order_status in order_statuses %}
+                  <option value="{{ order_status.order_status_id }}" {% if order_status.order_status_id == payment_sslcommerz_pending_status_id %}selected{% endif %}>{{ order_status.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="input-failed-status">{{ entry_failed_status }}</label>
+            <div class="col-sm-10">
+              <select name="payment_sslcommerz_failed_status_id" id="input-failed-status" class="form-select">
+                {% for order_status in order_statuses %}
+                  <option value="{{ order_status.order_status_id }}" {% if order_status.order_status_id == payment_sslcommerz_failed_status_id %}selected{% endif %}>{{ order_status.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="input-geo-zone">{{ entry_geo_zone }}</label>
+            <div class="col-sm-10">
+              <select name="payment_sslcommerz_geo_zone_id" id="input-geo-zone" class="form-select">
+                <option value="0">All Zones</option>
+                {% for geo_zone in geo_zones %}
+                  <option value="{{ geo_zone.geo_zone_id }}" {% if geo_zone.geo_zone_id == payment_sslcommerz_geo_zone_id %}selected{% endif %}>{{ geo_zone.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="payment_sslcommerz_status" id="input-status" class="form-select">
+                <option value="1" {% if payment_sslcommerz_status %}selected{% endif %}>{{ text_enabled }}</option>
+                <option value="0" {% if not payment_sslcommerz_status %}selected{% endif %}>{{ text_disabled }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="input-sort-order">{{ entry_sort_order }}</label>
+            <div class="col-sm-10">
+              <input type="number" name="payment_sslcommerz_sort_order" value="{{ payment_sslcommerz_sort_order }}" id="input-sort-order" class="form-control"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
