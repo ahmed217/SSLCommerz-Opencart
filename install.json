@@ -1,8 +1,13 @@
+
 {
   "name": "SSLCommerz Payment Gateway",
-  "code": "sslcommerz",
-  "version": "1.0.0",
-  "author": "Faruk",
+  "version": "4.0.0",
+  "author": "SSLCommerz",
   "link": "https://www.sslcommerz.com",
-  "status": 1
+  "install": [
+    {
+      "type": "file",
+      "source": "upload/"
+    }
+  ]
 }
